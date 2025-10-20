@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:pets_app/l10n/app_localizations.dart';
 import 'package:uuid/uuid.dart';
 import 'package:pets_app/domain/entities/pet.dart';
@@ -67,7 +68,7 @@ class _AddPetPageState extends State<AddPetPage> {
   }
 
   Future<void> _pickImageFromCamera() async {
-    final imagePath = await ImagePickerHelper.pickImageFromCamera();
+    final imagePath = await ImagePickerHelper.pickImage(ImageSource.camera);
     if (imagePath != null) {
       setState(() {
         _selectedImagePath = imagePath;
@@ -77,7 +78,7 @@ class _AddPetPageState extends State<AddPetPage> {
   }
 
   Future<void> _pickImageFromGallery() async {
-    final imagePath = await ImagePickerHelper.pickImageFromGallery();
+    final imagePath = await ImagePickerHelper.pickImage(ImageSource.gallery);
     if (imagePath != null) {
       setState(() {
         _selectedImagePath = imagePath;

@@ -11,14 +11,9 @@ import 'package:pets_app/presentation/ui/pages/home_page.dart';
 import 'package:go_router/go_router.dart';
 import 'package:pets_app/presentation/ui/pages/pet_details_page.dart';
 
-/// Entry point of the application
-///
-/// Initializes all dependencies before running the app
 void main() async {
-  // Ensure Flutter bindings are initialized
   WidgetsFlutterBinding.ensureInitialized();
 
-  // Initialize dependency injection
   await initializeDependencies();
 
   runApp(const MainApp());
@@ -43,15 +38,11 @@ class MainApp extends StatelessWidget {
   }
 }
 
-/// Router configuration
-///
-/// All routes use GetIt (sl) to inject dependencies into BLoC providers
 final _router = GoRouter(
   routes: [
     GoRoute(
       path: '/',
       builder: (context, state) => BlocProvider(
-        // Get HomeCubit from DI container
         create: (context) => sl<HomeCubit>()..getPets(),
         child: const HomePage(),
       ),
@@ -59,7 +50,6 @@ final _router = GoRouter(
     GoRoute(
       path: '/add-pet',
       builder: (context, state) => BlocProvider(
-        // Get AddPetCubit from DI container
         create: (context) => sl<AddPetCubit>(),
         child: const AddPetPage(),
       ),

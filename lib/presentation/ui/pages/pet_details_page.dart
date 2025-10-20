@@ -72,7 +72,6 @@ class PetDetailsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      // Create PetDetailsCubit with repositories from DI container
       create: (context) => PetDetailsCubit(
         petRepository: sl<PetRepository>(),
         eventRepository: sl<EventRepository>(),
