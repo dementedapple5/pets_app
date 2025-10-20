@@ -1,0 +1,189 @@
+{
+  "@@locale": "en",
+  "appTitle": "Pets App",
+  "@appTitle": {
+    "description": "The title of the application"
+  },
+  "pets": "Pets",
+  "@pets": {
+    "description": "Title for the pets list page"
+  },
+  "addPet": "Add Pet",
+  "@addPet": {
+    "description": "Title for the add pet page"
+  },
+  "noPetsFound": "No pets found",
+  "@noPetsFound": {
+    "description": "Message shown when no pets are found"
+  },
+  "petName": "Pet Name",
+  "@petName": {
+    "description": "Label for pet name field"
+  },
+  "enterPetName": "Enter pet name",
+  "@enterPetName": {
+    "description": "Hint text for pet name field"
+  },
+  "pleaseEnterPetName": "Please enter pet name",
+  "@pleaseEnterPetName": {
+    "description": "Validation message for pet name field"
+  },
+  "species": "Species",
+  "@species": {
+    "description": "Label for species field"
+  },
+  "speciesHint": "e.g., Dog, Cat, Bird",
+  "@speciesHint": {
+    "description": "Hint text for species field"
+  },
+  "pleaseEnterSpecies": "Please enter species",
+  "@pleaseEnterSpecies": {
+    "description": "Validation message for species field"
+  },
+  "breed": "Breed",
+  "@breed": {
+    "description": "Label for breed field"
+  },
+  "enterBreed": "Enter breed",
+  "@enterBreed": {
+    "description": "Hint text for breed field"
+  },
+  "pleaseEnterBreed": "Please enter breed",
+  "@pleaseEnterBreed": {
+    "description": "Validation message for breed field"
+  },
+  "gender": "Gender",
+  "@gender": {
+    "description": "Label for gender field"
+  },
+  "male": "Male",
+  "@male": {
+    "description": "Male gender option"
+  },
+  "female": "Female",
+  "@female": {
+    "description": "Female gender option"
+  },
+  "age": "Age",
+  "@age": {
+    "description": "Label for age field"
+  },
+  "ageYears": "Age (years)",
+  "@ageYears": {
+    "description": "Label for age field with unit"
+  },
+  "enterAgeInYears": "Enter age in years",
+  "@enterAgeInYears": {
+    "description": "Hint text for age field"
+  },
+  "pleaseEnterAge": "Please enter age",
+  "@pleaseEnterAge": {
+    "description": "Validation message for age field"
+  },
+  "pleaseEnterValidNumber": "Please enter a valid number",
+  "@pleaseEnterValidNumber": {
+    "description": "Validation message for numeric fields"
+  },
+  "weight": "Weight",
+  "@weight": {
+    "description": "Label for weight field"
+  },
+  "weightKg": "Weight (kg)",
+  "@weightKg": {
+    "description": "Label for weight field with unit"
+  },
+  "enterWeightInKg": "Enter weight in kg",
+  "@enterWeightInKg": {
+    "description": "Hint text for weight field"
+  },
+  "pleaseEnterWeight": "Please enter weight",
+  "@pleaseEnterWeight": {
+    "description": "Validation message for weight field"
+  },
+  "selectImage": "Select Image",
+  "@selectImage": {
+    "description": "Button text to select an image"
+  },
+  "changeImage": "Change Image",
+  "@changeImage": {
+    "description": "Button text to change an image"
+  },
+  "imageSelected": "Image selected",
+  "@imageSelected": {
+    "description": "Text shown when an image is selected"
+  },
+  "selectImageSource": "Select Image Source",
+  "@selectImageSource": {
+    "description": "Title for image source selection dialog"
+  },
+  "chooseHowToAddImage": "Choose how you want to add an image",
+  "@chooseHowToAddImage": {
+    "description": "Content for image source selection dialog"
+  },
+  "camera": "Camera",
+  "@camera": {
+    "description": "Camera option for image selection"
+  },
+  "gallery": "Gallery",
+  "@gallery": {
+    "description": "Gallery option for image selection"
+  },
+  "pleaseSelectImageOrUrl": "Please select an image or enter an image URL",
+  "@pleaseSelectImageOrUrl": {
+    "description": "Validation message for image selection"
+  },
+  "petAddedSuccessfully": "Pet added successfully",
+  "@petAddedSuccessfully": {
+    "description": "Success message when pet is added"
+  },
+  "petEditedSuccessfully": "Pet edited successfully",
+  "@petEditedSuccessfully": {
+    "description": "Success message when pet is edited"
+  },
+  "petDeletedSuccessfully": "Pet deleted successfully",
+  "@petDeletedSuccessfully": {
+    "description": "Success message when pet is deleted"
+  },
+  "deletePet": "Delete Pet",
+  "@deletePet": {
+    "description": "Title for delete pet dialog"
+  },
+  "areYouSureDeletePet": "Are you sure you want to delete {petName}?",
+  "@areYouSureDeletePet": {
+    "description": "Confirmation message for deleting a pet",
+    "placeholders": {
+      "petName": {
+        "type": "String",
+        "description": "The name of the pet to delete"
+      }
+    }
+  },
+  "cancel": "Cancel",
+  "@cancel": {
+    "description": "Cancel button text"
+  },
+  "delete": "Delete",
+  "@delete": {
+    "description": "Delete button text"
+  },
+  "events": "Events",
+  "@events": {
+    "description": "Title for events section"
+  },
+  "noEventsYet": "No events yet",
+  "@noEventsYet": {
+    "description": "Message shown when no events exist"
+  },
+  "eventAddedSuccessfully": "Event added successfully",
+  "@eventAddedSuccessfully": {
+    "description": "Success message when event is added"
+  },
+  "eventUpdatedSuccessfully": "Event updated successfully",
+  "@eventUpdatedSuccessfully": {
+    "description": "Success message when event is updated"
+  },
+  "eventDeletedSuccessfully": "Event deleted successfully",
+  "@eventDeletedSuccessfully": {
+    "description": "Success message when event is deleted"
+  }
+}

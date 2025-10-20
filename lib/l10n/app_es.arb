@@ -1,0 +1,189 @@
+{
+  "@@locale": "es",
+  "appTitle": "App de Mascotas",
+  "@appTitle": {
+    "description": "El título de la aplicación"
+  },
+  "pets": "Mascotas",
+  "@pets": {
+    "description": "Título para la página de lista de mascotas"
+  },
+  "addPet": "Agregar Mascota",
+  "@addPet": {
+    "description": "Título para la página de agregar mascota"
+  },
+  "noPetsFound": "No se encontraron mascotas",
+  "@noPetsFound": {
+    "description": "Mensaje mostrado cuando no se encuentran mascotas"
+  },
+  "petName": "Nombre de la Mascota",
+  "@petName": {
+    "description": "Etiqueta para el campo de nombre de mascota"
+  },
+  "enterPetName": "Ingrese el nombre de la mascota",
+  "@enterPetName": {
+    "description": "Texto de ayuda para el campo de nombre de mascota"
+  },
+  "pleaseEnterPetName": "Por favor ingrese el nombre de la mascota",
+  "@pleaseEnterPetName": {
+    "description": "Mensaje de validación para el campo de nombre de mascota"
+  },
+  "species": "Especie",
+  "@species": {
+    "description": "Etiqueta para el campo de especie"
+  },
+  "speciesHint": "ej., Perro, Gato, Ave",
+  "@speciesHint": {
+    "description": "Texto de ayuda para el campo de especie"
+  },
+  "pleaseEnterSpecies": "Por favor ingrese la especie",
+  "@pleaseEnterSpecies": {
+    "description": "Mensaje de validación para el campo de especie"
+  },
+  "breed": "Raza",
+  "@breed": {
+    "description": "Etiqueta para el campo de raza"
+  },
+  "enterBreed": "Ingrese la raza",
+  "@enterBreed": {
+    "description": "Texto de ayuda para el campo de raza"
+  },
+  "pleaseEnterBreed": "Por favor ingrese la raza",
+  "@pleaseEnterBreed": {
+    "description": "Mensaje de validación para el campo de raza"
+  },
+  "gender": "Género",
+  "@gender": {
+    "description": "Etiqueta para el campo de género"
+  },
+  "male": "Macho",
+  "@male": {
+    "description": "Opción de género macho"
+  },
+  "female": "Hembra",
+  "@female": {
+    "description": "Opción de género hembra"
+  },
+  "age": "Edad",
+  "@age": {
+    "description": "Etiqueta para el campo de edad"
+  },
+  "ageYears": "Edad (años)",
+  "@ageYears": {
+    "description": "Etiqueta para el campo de edad con unidad"
+  },
+  "enterAgeInYears": "Ingrese la edad en años",
+  "@enterAgeInYears": {
+    "description": "Texto de ayuda para el campo de edad"
+  },
+  "pleaseEnterAge": "Por favor ingrese la edad",
+  "@pleaseEnterAge": {
+    "description": "Mensaje de validación para el campo de edad"
+  },
+  "pleaseEnterValidNumber": "Por favor ingrese un número válido",
+  "@pleaseEnterValidNumber": {
+    "description": "Mensaje de validación para campos numéricos"
+  },
+  "weight": "Peso",
+  "@weight": {
+    "description": "Etiqueta para el campo de peso"
+  },
+  "weightKg": "Peso (kg)",
+  "@weightKg": {
+    "description": "Etiqueta para el campo de peso con unidad"
+  },
+  "enterWeightInKg": "Ingrese el peso en kg",
+  "@enterWeightInKg": {
+    "description": "Texto de ayuda para el campo de peso"
+  },
+  "pleaseEnterWeight": "Por favor ingrese el peso",
+  "@pleaseEnterWeight": {
+    "description": "Mensaje de validación para el campo de peso"
+  },
+  "selectImage": "Seleccionar Imagen",
+  "@selectImage": {
+    "description": "Texto del botón para seleccionar una imagen"
+  },
+  "changeImage": "Cambiar Imagen",
+  "@changeImage": {
+    "description": "Texto del botón para cambiar una imagen"
+  },
+  "imageSelected": "Imagen seleccionada",
+  "@imageSelected": {
+    "description": "Texto mostrado cuando se selecciona una imagen"
+  },
+  "selectImageSource": "Seleccionar Fuente de Imagen",
+  "@selectImageSource": {
+    "description": "Título para el diálogo de selección de fuente de imagen"
+  },
+  "chooseHowToAddImage": "Elija cómo desea agregar una imagen",
+  "@chooseHowToAddImage": {
+    "description": "Contenido para el diálogo de selección de fuente de imagen"
+  },
+  "camera": "Cámara",
+  "@camera": {
+    "description": "Opción de cámara para selección de imagen"
+  },
+  "gallery": "Galería",
+  "@gallery": {
+    "description": "Opción de galería para selección de imagen"
+  },
+  "pleaseSelectImageOrUrl": "Por favor seleccione una imagen o ingrese una URL de imagen",
+  "@pleaseSelectImageOrUrl": {
+    "description": "Mensaje de validación para selección de imagen"
+  },
+  "petAddedSuccessfully": "Mascota agregada exitosamente",
+  "@petAddedSuccessfully": {
+    "description": "Mensaje de éxito cuando se agrega una mascota"
+  },
+  "petEditedSuccessfully": "Mascota editada exitosamente",
+  "@petEditedSuccessfully": {
+    "description": "Mensaje de éxito cuando se edita una mascota"
+  },
+  "petDeletedSuccessfully": "Mascota eliminada exitosamente",
+  "@petDeletedSuccessfully": {
+    "description": "Mensaje de éxito cuando se elimina una mascota"
+  },
+  "deletePet": "Eliminar Mascota",
+  "@deletePet": {
+    "description": "Título para el diálogo de eliminar mascota"
+  },
+  "areYouSureDeletePet": "¿Está seguro de que desea eliminar {petName}?",
+  "@areYouSureDeletePet": {
+    "description": "Mensaje de confirmación para eliminar una mascota",
+    "placeholders": {
+      "petName": {
+        "type": "String",
+        "description": "El nombre de la mascota a eliminar"
+      }
+    }
+  },
+  "cancel": "Cancelar",
+  "@cancel": {
+    "description": "Texto del botón cancelar"
+  },
+  "delete": "Eliminar",
+  "@delete": {
+    "description": "Texto del botón eliminar"
+  },
+  "events": "Eventos",
+  "@events": {
+    "description": "Título para la sección de eventos"
+  },
+  "noEventsYet": "Aún no hay eventos",
+  "@noEventsYet": {
+    "description": "Mensaje mostrado cuando no existen eventos"
+  },
+  "eventAddedSuccessfully": "Evento agregado exitosamente",
+  "@eventAddedSuccessfully": {
+    "description": "Mensaje de éxito cuando se agrega un evento"
+  },
+  "eventUpdatedSuccessfully": "Evento actualizado exitosamente",
+  "@eventUpdatedSuccessfully": {
+    "description": "Mensaje de éxito cuando se actualiza un evento"
+  },
+  "eventDeletedSuccessfully": "Evento eliminado exitosamente",
+  "@eventDeletedSuccessfully": {
+    "description": "Mensaje de éxito cuando se elimina un evento"
+  }
+}
