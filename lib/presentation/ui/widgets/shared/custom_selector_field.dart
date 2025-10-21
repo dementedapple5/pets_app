@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pets_app/presentation/ui/constants/app_sizes.dart';
 
 class CustomSelectorField<T> extends StatelessWidget {
   final String labelText;
@@ -7,7 +8,7 @@ class CustomSelectorField<T> extends StatelessWidget {
   final List<DropdownMenuItem<T>> items;
   final void Function(T?)? onChanged;
   final double borderRadius;
-  final Color backgroundColor;
+  final Color? backgroundColor;
   final String? Function(T?)? validator;
   final bool isExpanded;
   final TextStyle? textStyle;
@@ -20,8 +21,8 @@ class CustomSelectorField<T> extends StatelessWidget {
     required this.value,
     required this.items,
     required this.onChanged,
-    this.borderRadius = 12.0,
-    this.backgroundColor = Colors.black12,
+    this.borderRadius = AppRadii.medium,
+    this.backgroundColor,
     this.validator,
     this.isExpanded = true,
     this.textStyle,
@@ -42,7 +43,8 @@ class CustomSelectorField<T> extends StatelessWidget {
         labelText: labelText,
         hintText: hintText,
         filled: true,
-        fillColor: backgroundColor,
+        fillColor:
+            backgroundColor ?? Theme.of(context).inputDecorationTheme.fillColor,
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(borderRadius),
           borderSide: BorderSide.none,

@@ -7,6 +7,7 @@ import 'package:pets_app/domain/entities/pet.dart';
 import 'package:pets_app/presentation/blocs/pet_details/pet_details_cubit.dart';
 import 'package:pets_app/presentation/ui/widgets/shared/custom_textfield.dart';
 import 'package:pets_app/presentation/ui/widgets/shared/primary_button.dart';
+import 'package:pets_app/l10n/app_localizations.dart';
 
 class AddEventBottomSheet extends StatefulWidget {
   final Pet pet;
@@ -81,6 +82,7 @@ class _AddEventBottomSheetState extends State<AddEventBottomSheet> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Padding(
       padding: EdgeInsets.only(
         bottom: MediaQuery.of(context).viewInsets.bottom,
@@ -93,21 +95,23 @@ class _AddEventBottomSheetState extends State<AddEventBottomSheet> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Add Event',
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                AppLocalizations.of(context)!.addEvent,
+                style: theme.textTheme.titleLarge?.copyWith(
+                  fontWeight: FontWeight.bold,
+                ),
               ),
               SizedBox(height: 16),
               CustomTextField(
-                labelText: 'Event Name',
-                hintText: 'e.g., Veterinary Checkup',
+                labelText: AppLocalizations.of(context)!.eventName,
+                hintText: AppLocalizations.of(context)!.eventNameHint,
                 controller: nameController,
                 keyboardType: TextInputType.text,
                 textInputAction: TextInputAction.next,
               ),
               SizedBox(height: 12),
               CustomTextField(
-                labelText: 'Description',
-                hintText: 'Enter event details',
+                labelText: AppLocalizations.of(context)!.description,
+                hintText: AppLocalizations.of(context)!.eventDescriptionHint,
                 controller: descriptionController,
                 keyboardType: TextInputType.multiline,
                 textInputAction: TextInputAction.newline,
@@ -115,8 +119,8 @@ class _AddEventBottomSheetState extends State<AddEventBottomSheet> {
               ),
               SizedBox(height: 12),
               CustomTextField(
-                labelText: 'Date',
-                hintText: 'Select a date',
+                labelText: AppLocalizations.of(context)!.date,
+                hintText: AppLocalizations.of(context)!.selectDate,
                 controller: dateController,
                 keyboardType: TextInputType.datetime,
                 textInputAction: TextInputAction.next,
@@ -126,8 +130,8 @@ class _AddEventBottomSheetState extends State<AddEventBottomSheet> {
               ),
               SizedBox(height: 12),
               CustomTextField(
-                labelText: 'Time',
-                hintText: 'Select a time',
+                labelText: AppLocalizations.of(context)!.time,
+                hintText: AppLocalizations.of(context)!.selectTime,
                 controller: timeController,
                 keyboardType: TextInputType.datetime,
                 textInputAction: TextInputAction.next,
@@ -137,8 +141,8 @@ class _AddEventBottomSheetState extends State<AddEventBottomSheet> {
               ),
               SizedBox(height: 12),
               CustomTextField(
-                labelText: 'Location',
-                hintText: 'e.g., Pet Clinic',
+                labelText: AppLocalizations.of(context)!.location,
+                hintText: AppLocalizations.of(context)!.locationHint,
                 controller: locationController,
                 keyboardType: TextInputType.text,
                 textInputAction: TextInputAction.done,
@@ -148,13 +152,19 @@ class _AddEventBottomSheetState extends State<AddEventBottomSheet> {
                 children: [
                   Checkbox(
                     value: notificationEnabled,
+                    activeColor: theme.colorScheme.onSurface,
+                    checkColor: theme.colorScheme.surface,
                     onChanged: (value) {
                       setState(() {
                         notificationEnabled = value ?? true;
                       });
                     },
                   ),
-                  Expanded(child: Text('Enable notification reminder')),
+                  Expanded(
+                    child: Text(
+                      AppLocalizations.of(context)!.enableNotificationReminder,
+                    ),
+                  ),
                 ],
               ),
               SizedBox(height: 16),
@@ -162,31 +172,48 @@ class _AddEventBottomSheetState extends State<AddEventBottomSheet> {
                 children: [
                   Expanded(
                     child: PrimaryButton(
-                      title: 'Cancel',
+                      title: AppLocalizations.of(context)!.cancel,
                       onPressed: () => Navigator.pop(context),
-                      backgroundColor: Colors.grey,
+                      backgroundColor: theme.colorScheme.outline,
+                      textColor: theme.colorScheme.surface,
                     ),
                   ),
                   SizedBox(width: 12),
                   Expanded(
                     child: PrimaryButton(
-                      title: 'Add Event',
+                      backgroundColor: theme.colorScheme.onSurface,
+                      textColor: theme.colorScheme.surface,
+                      title: AppLocalizations.of(context)!.addEvent,
                       onPressed: () {
                         if (nameController.text.isEmpty) {
                           ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(content: Text('Please enter event name')),
+                            SnackBar(
+                              content: Text(
+                                AppLocalizations.of(
+                                  context,
+                                )!.pleaseEnterEventName,
+                              ),
+                            ),
                           );
                           return;
                         }
                         if (selectedDate == null) {
                           ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(content: Text('Please select a date')),
+                            SnackBar(
+                              content: Text(
+                                AppLocalizations.of(context)!.pleaseSelectDate,
+                              ),
+                            ),
                           );
                           return;
                         }
                         if (selectedTime == null) {
                           ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(content: Text('Please select a time')),
+                            SnackBar(
+                              content: Text(
+                                AppLocalizations.of(context)!.pleaseSelectTime,
+                              ),
+                            ),
                           );
                           return;
                         }
@@ -215,7 +242,6 @@ class _AddEventBottomSheetState extends State<AddEventBottomSheet> {
                             .addEvent(newEvent);
                         context.pop();
                       },
-                      backgroundColor: Colors.blue,
                     ),
                   ),
                 ],

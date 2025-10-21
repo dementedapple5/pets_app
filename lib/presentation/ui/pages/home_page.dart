@@ -46,13 +46,27 @@ class HomePage extends StatelessWidget {
                 children: [
                   ListTile(
                     leading: ImageUtils.getCircleAvatarImage(pet.imageUrl),
-                    title: Text(pet.name),
-                    subtitle: Text(pet.breed),
+                    title: Text(
+                      pet.name,
+                      style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                        color: Theme.of(context).colorScheme.onSurface,
+                      ),
+                    ),
+                    subtitle: Text(
+                      pet.breed,
+                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                        color: Theme.of(context).colorScheme.onSurfaceVariant,
+                      ),
+                    ),
                     onTap: () {
                       context.push('/pet-details', extra: pet);
                     },
                   ),
-                  Divider(endIndent: 16, indent: 16),
+                  Divider(
+                    endIndent: 16,
+                    indent: 16,
+                    color: Theme.of(context).colorScheme.outline,
+                  ),
                 ],
               );
             },

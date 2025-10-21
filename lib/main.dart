@@ -10,6 +10,7 @@ import 'package:pets_app/presentation/ui/pages/add_pet_page.dart';
 import 'package:pets_app/presentation/ui/pages/home_page.dart';
 import 'package:go_router/go_router.dart';
 import 'package:pets_app/presentation/ui/pages/pet_details_page.dart';
+import 'package:pets_app/presentation/ui/theme/app_theme.dart';
 import 'package:pets_app/presentation/ui/utils/notification_service.dart';
 
 void main() async {
@@ -31,6 +32,9 @@ class MainApp extends StatelessWidget {
     return MaterialApp.router(
       routerConfig: _router,
       title: 'Pets App',
+      theme: AppTheme.light(),
+      darkTheme: AppTheme.dark(),
+      themeMode: ThemeMode.system,
       localizationsDelegates: const [
         AppLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pets_app/presentation/ui/constants/app_sizes.dart';
 
 class CustomTextField extends StatelessWidget {
   final String labelText;
@@ -7,7 +8,7 @@ class CustomTextField extends StatelessWidget {
   final TextInputType keyboardType;
   final TextInputAction textInputAction;
   final double borderRadius;
-  final Color backgroundColor;
+  final Color? backgroundColor;
   final String? Function(String?)? validator;
   final int? maxLines;
   final bool readOnly;
@@ -21,8 +22,8 @@ class CustomTextField extends StatelessWidget {
     required this.controller,
     required this.keyboardType,
     required this.textInputAction,
-    this.borderRadius = 12.0,
-    this.backgroundColor = Colors.black12,
+    this.borderRadius = AppRadii.medium,
+    this.backgroundColor,
     this.validator,
     this.maxLines = 1,
     this.readOnly = false,
@@ -44,7 +45,8 @@ class CustomTextField extends StatelessWidget {
         labelText: labelText,
         hintText: hintText,
         filled: true,
-        fillColor: backgroundColor,
+        fillColor:
+            backgroundColor ?? Theme.of(context).inputDecorationTheme.fillColor,
         suffixIcon: suffixIcon,
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(borderRadius),

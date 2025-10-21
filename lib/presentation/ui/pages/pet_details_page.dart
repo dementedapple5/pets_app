@@ -240,16 +240,31 @@ class PetDetailsPage extends StatelessWidget {
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
                                           children: [
-                                            Text(event.name),
-                                            Text(event.description),
-                                            Text(formatDateTime(event.date)),
-                                            Text(event.location),
-                                            if (event.notificationEnabled)
-                                              Icon(
-                                                Icons.notifications_active,
-                                                size: 16,
-                                                color: Colors.blue,
+                                            Row(
+                                              children: [
+                                                Icon(
+                                                  Icons.calendar_month,
+                                                  color: Colors.grey[600],
+                                                ),
+                                                SizedBox(width: 8),
+                                                Text(
+                                                  formatDateTime(event.date),
+                                                  style: TextStyle(
+                                                    fontSize: 12,
+                                                    color: Colors.grey[600],
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                            Text(
+                                              event.name,
+                                              style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 16,
                                               ),
+                                            ),
+                                            Text(event.description),
+                                            Text(event.location),
                                           ],
                                         ),
                                       );

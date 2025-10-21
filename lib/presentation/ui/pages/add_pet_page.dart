@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:pets_app/l10n/app_localizations.dart';
+import 'package:pets_app/presentation/ui/constants/app_sizes.dart';
 import 'package:uuid/uuid.dart';
 import 'package:pets_app/domain/entities/pet.dart';
 import 'package:pets_app/presentation/blocs/add_pet/add_pet_cubit.dart';
@@ -117,6 +118,7 @@ class _AddPetPageState extends State<AddPetPage> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Scaffold(
       appBar: AppBar(
         title: Text(AppLocalizations.of(context)!.addPet),
@@ -169,7 +171,11 @@ class _AddPetPageState extends State<AddPetPage> {
                       else
                         Container(
                           height: 200,
-                          color: Colors.black12,
+
+                          decoration: BoxDecoration(
+                            borderRadius: AppRadii.brMedium,
+                            color: theme.colorScheme.surfaceBright,
+                          ),
                           child: const Center(
                             child: Icon(Icons.image, size: 50),
                           ),
@@ -181,6 +187,8 @@ class _AddPetPageState extends State<AddPetPage> {
                           children: [
                             PrimaryButton(
                               onPressed: _showImagePickerDialog,
+                              backgroundColor: theme.colorScheme.primary,
+                              textColor: theme.colorScheme.onSurface,
                               title: _selectedImagePath != null
                                   ? AppLocalizations.of(context)!.changeImage
                                   : AppLocalizations.of(context)!.selectImage,
@@ -335,6 +343,7 @@ class _AddPetPageState extends State<AddPetPage> {
                     );
                   },
                 ),
+                const SizedBox(height: 32),
               ],
             ),
           ),
