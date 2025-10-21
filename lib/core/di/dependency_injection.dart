@@ -8,10 +8,18 @@ import 'package:pets_app/domain/repositories/event_repository.dart';
 import 'package:pets_app/domain/repositories/pet_repository.dart';
 import 'package:pets_app/presentation/blocs/add_pet/add_pet_cubit.dart';
 import 'package:pets_app/presentation/blocs/home/home_cubit.dart';
+import 'package:pets_app/presentation/ui/utils/notification_service.dart';
 
 final sl = GetIt.instance;
 
 Future<void> initializeDependencies() async {
+  // ========================================
+  // Services
+  // ========================================
+
+  sl.registerLazySingleton<NotificationService>(() => NotificationService());
+  await sl<NotificationService>().initialize();
+
   sl.registerLazySingleton<DatabaseHelper>(() => DatabaseHelper());
 
   await sl<DatabaseHelper>().database;

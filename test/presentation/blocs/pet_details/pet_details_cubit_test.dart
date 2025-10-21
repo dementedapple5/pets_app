@@ -7,20 +7,46 @@ import 'package:pets_app/domain/repositories/event_repository.dart';
 import 'package:pets_app/domain/repositories/pet_repository.dart';
 import 'package:pets_app/presentation/blocs/pet_details/pet_details_cubit.dart';
 import 'package:pets_app/presentation/blocs/pet_details/pet_details_state.dart';
+import 'package:pets_app/presentation/ui/utils/notification_service.dart';
 
 class MockPetRepository extends Mock implements PetRepository {}
 
 class MockEventRepository extends Mock implements EventRepository {}
 
+class MockNotificationService extends Mock implements NotificationService {}
+
 void main() {
+  setUpAll(() {
+    registerFallbackValue(
+      Event(
+        id: '',
+        name: '',
+        petId: '',
+        description: '',
+        date: DateTime(2024, 1, 1),
+        location: '',
+      ),
+    );
+  });
+
   group('PetDetailsCubit', () {
     late MockPetRepository mockPetRepository;
     late MockEventRepository mockEventRepository;
+    late MockNotificationService mockNotificationService;
     late PetDetailsCubit petDetailsCubit;
 
     setUp(() {
       mockPetRepository = MockPetRepository();
       mockEventRepository = MockEventRepository();
+      mockNotificationService = MockNotificationService();
+
+      // Setup default stubs for notification service
+      when(
+        () => mockNotificationService.scheduleEventNotification(any()),
+      ).thenAnswer((_) async {});
+      when(
+        () => mockNotificationService.cancelEventNotification(any()),
+      ).thenAnswer((_) async {});
     });
 
     tearDown(() => petDetailsCubit.close());
@@ -63,6 +89,7 @@ void main() {
         petDetailsCubit = PetDetailsCubit(
           petRepository: mockPetRepository,
           eventRepository: mockEventRepository,
+          notificationService: mockNotificationService,
           pet: testPet,
         );
       });
@@ -96,6 +123,7 @@ void main() {
         petDetailsCubit = PetDetailsCubit(
           petRepository: mockPetRepository,
           eventRepository: mockEventRepository,
+          notificationService: mockNotificationService,
           pet: testPet,
         );
       });
@@ -124,6 +152,7 @@ void main() {
         petDetailsCubit = PetDetailsCubit(
           petRepository: mockPetRepository,
           eventRepository: mockEventRepository,
+          notificationService: mockNotificationService,
           pet: testPet,
         );
       });
@@ -170,6 +199,7 @@ void main() {
         petDetailsCubit = PetDetailsCubit(
           petRepository: mockPetRepository,
           eventRepository: mockEventRepository,
+          notificationService: mockNotificationService,
           pet: testPet,
         );
       });
@@ -199,6 +229,7 @@ void main() {
         petDetailsCubit = PetDetailsCubit(
           petRepository: mockPetRepository,
           eventRepository: mockEventRepository,
+          notificationService: mockNotificationService,
           pet: testPet,
         );
       });
@@ -227,6 +258,7 @@ void main() {
         petDetailsCubit = PetDetailsCubit(
           petRepository: mockPetRepository,
           eventRepository: mockEventRepository,
+          notificationService: mockNotificationService,
           pet: testPet,
         );
       });

@@ -5,17 +5,21 @@ import 'package:pets_app/domain/repositories/event_repository.dart';
 import 'package:pets_app/domain/repositories/pet_repository.dart';
 import 'package:pets_app/presentation/blocs/pet_details/pet_details_state.dart';
 import 'package:pets_app/presentation/ui/utils/image_storage_service.dart';
+import 'package:pets_app/presentation/ui/utils/notification_service.dart';
 
 class PetDetailsCubit extends Cubit<PetDetailsState> {
   final PetRepository _petRepository;
   final EventRepository _eventRepository;
+  final NotificationService _notificationService;
   final Pet _pet;
   PetDetailsCubit({
     required PetRepository petRepository,
     required EventRepository eventRepository,
+    required NotificationService notificationService,
     required Pet pet,
   }) : _petRepository = petRepository,
        _eventRepository = eventRepository,
+       _notificationService = notificationService,
        _pet = pet,
        super(PetDetailsState(pet: pet));
 
@@ -46,6 +50,12 @@ class PetDetailsCubit extends Cubit<PetDetailsState> {
   Future<void> addEvent(Event event) async {
     emit(state.copyWith(isLoading: true));
     await _eventRepository.addEvent(event);
+
+    // Schedule notification if enabled
+    if (event.notificationEnabled) {
+      await _notificationService.scheduleEventNotification(event);
+    }
+
     emit(state.copyWith(isLoading: false, isEventAdded: true));
     emit(state.copyWith(isEventAdded: false));
   }
@@ -53,12 +63,23 @@ class PetDetailsCubit extends Cubit<PetDetailsState> {
   Future<void> updateEvent(Event event) async {
     emit(state.copyWith(isLoading: true));
     await _eventRepository.updateEvent(event);
+
+    // Cancel old notification and schedule new one if enabled
+    await _notificationService.cancelEventNotification(event.id);
+    if (event.notificationEnabled) {
+      await _notificationService.scheduleEventNotification(event);
+    }
+
     emit(state.copyWith(isLoading: false, isEventUpdated: true));
   }
 
   Future<void> deleteEvent(String id) async {
     emit(state.copyWith(isLoading: true));
     await _eventRepository.deleteEvent(id);
+
+    // Cancel notification for deleted event
+    await _notificationService.cancelEventNotification(id);
+
     emit(state.copyWith(isLoading: false, isEventDeleted: true));
   }
 }

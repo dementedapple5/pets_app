@@ -145,4 +145,49 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get eventDeletedSuccessfully => 'Event deleted successfully';
+
+  @override
+  String get addEvent => 'Add Event';
+
+  @override
+  String get eventName => 'Event Name';
+
+  @override
+  String get eventNameHint => 'e.g., Veterinary Checkup';
+
+  @override
+  String get description => 'Description';
+
+  @override
+  String get eventDescriptionHint => 'Enter event details';
+
+  @override
+  String get date => 'Date';
+
+  @override
+  String get selectDate => 'Select a date';
+
+  @override
+  String get time => 'Time';
+
+  @override
+  String get selectTime => 'Select a time';
+
+  @override
+  String get location => 'Location';
+
+  @override
+  String get locationHint => 'e.g., Pet Clinic';
+
+  @override
+  String get enableNotificationReminder => 'Enable notification reminder';
+
+  @override
+  String get pleaseEnterEventName => 'Please enter event name';
+
+  @override
+  String get pleaseSelectDate => 'Please select a date';
+
+  @override
+  String get pleaseSelectTime => 'Please select a time';
 }

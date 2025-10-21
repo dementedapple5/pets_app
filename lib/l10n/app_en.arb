@@ -185,5 +185,65 @@
   "eventDeletedSuccessfully": "Event deleted successfully",
   "@eventDeletedSuccessfully": {
     "description": "Success message when event is deleted"
+  },
+  "addEvent": "Add Event",
+  "@addEvent": {
+    "description": "Title for add event form"
+  },
+  "eventName": "Event Name",
+  "@eventName": {
+    "description": "Label for event name field"
+  },
+  "eventNameHint": "e.g., Veterinary Checkup",
+  "@eventNameHint": {
+    "description": "Hint text for event name field"
+  },
+  "description": "Description",
+  "@description": {
+    "description": "Label for description field"
+  },
+  "eventDescriptionHint": "Enter event details",
+  "@eventDescriptionHint": {
+    "description": "Hint text for event description field"
+  },
+  "date": "Date",
+  "@date": {
+    "description": "Label for date field"
+  },
+  "selectDate": "Select a date",
+  "@selectDate": {
+    "description": "Hint text for date selection"
+  },
+  "time": "Time",
+  "@time": {
+    "description": "Label for time field"
+  },
+  "selectTime": "Select a time",
+  "@selectTime": {
+    "description": "Hint text for time selection"
+  },
+  "location": "Location",
+  "@location": {
+    "description": "Label for location field"
+  },
+  "locationHint": "e.g., Pet Clinic",
+  "@locationHint": {
+    "description": "Hint text for location field"
+  },
+  "enableNotificationReminder": "Enable notification reminder",
+  "@enableNotificationReminder": {
+    "description": "Label for notification toggle"
+  },
+  "pleaseEnterEventName": "Please enter event name",
+  "@pleaseEnterEventName": {
+    "description": "Validation message for event name"
+  },
+  "pleaseSelectDate": "Please select a date",
+  "@pleaseSelectDate": {
+    "description": "Validation message for date"
+  },
+  "pleaseSelectTime": "Please select a time",
+  "@pleaseSelectTime": {
+    "description": "Validation message for time"
   }
 }

@@ -22,6 +22,7 @@ void main() {
       'description': 'Annual vaccination for Buddy',
       'date': testDate.toIso8601String(),
       'location': 'Veterinary Clinic',
+      'notificationEnabled': 1,
     };
 
     test('fromJson creates EventModel correctly', () {
@@ -107,6 +108,7 @@ void main() {
         'description': 'Test description',
         'date': dateString,
         'location': 'Test Location',
+        'notificationEnabled': 1,
       };
 
       final result = EventModel.fromJson(json);

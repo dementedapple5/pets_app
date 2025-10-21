@@ -9,6 +9,7 @@ import 'package:pets_app/domain/repositories/pet_repository.dart';
 import 'package:pets_app/presentation/blocs/pet_details/pet_details_cubit.dart';
 import 'package:pets_app/presentation/blocs/pet_details/pet_details_state.dart';
 import 'package:pets_app/presentation/ui/utils/image_utils.dart';
+import 'package:pets_app/presentation/ui/utils/notification_service.dart';
 import 'package:pets_app/presentation/ui/widgets/pet_details/edit_pet_bottom_sheet.dart';
 import 'package:pets_app/presentation/ui/widgets/pet_details/add_event_bottom_sheet.dart';
 
@@ -75,6 +76,7 @@ class PetDetailsPage extends StatelessWidget {
       create: (context) => PetDetailsCubit(
         petRepository: sl<PetRepository>(),
         eventRepository: sl<EventRepository>(),
+        notificationService: sl<NotificationService>(),
         pet: pet,
       )..getPetEvents(),
       child: BlocConsumer<PetDetailsCubit, PetDetailsState>(
@@ -208,18 +210,50 @@ class PetDetailsPage extends StatelessWidget {
                                   style: TextStyle(color: Colors.grey),
                                 )
                               else
-                                ...state.events!.map(
-                                  (event) => Column(
-                                    children: [
-                                      ListTile(
-                                        title: Text(event.name),
-                                        subtitle: Text(
-                                          '${event.description}\n${formatDate(event.date)} - ${event.location}',
+                                SizedBox(
+                                  height: 150,
+                                  child: ListView.builder(
+                                    itemCount: state.events!.length,
+                                    itemExtent: 200,
+                                    scrollDirection: Axis.horizontal,
+                                    itemBuilder: (context, index) {
+                                      final event = state.events![index];
+                                      return Container(
+                                        padding: EdgeInsets.all(16),
+                                        decoration: BoxDecoration(
+                                          color: Colors.white,
+                                          borderRadius: BorderRadius.circular(
+                                            16,
+                                          ),
+                                          boxShadow: [
+                                            BoxShadow(
+                                              color: Colors.black.withValues(
+                                                alpha: 0.1,
+                                              ),
+                                              spreadRadius: 2,
+                                              blurRadius: 10,
+                                              offset: Offset(0, 3),
+                                            ),
+                                          ],
                                         ),
-                                        isThreeLine: true,
-                                      ),
-                                      Divider(),
-                                    ],
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(event.name),
+                                            Text(event.description),
+                                            Text(formatDateTime(event.date)),
+                                            Text(event.location),
+                                            if (event.notificationEnabled)
+                                              Icon(
+                                                Icons.notifications_active,
+                                                size: 16,
+                                                color: Colors.blue,
+                                              ),
+                                          ],
+                                        ),
+                                      );
+                                    },
                                   ),
                                 ),
                             ],
@@ -236,6 +270,10 @@ class PetDetailsPage extends StatelessWidget {
 
   formatDate(DateTime date) {
     return DateFormat('dd/MM/yyyy').format(date);
+  }
+
+  formatDateTime(DateTime date) {
+    return DateFormat('dd/MM/yyyy HH:mm').format(date);
   }
 
   Widget _buildInfoRow(String label, String value) {

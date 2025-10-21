@@ -9,7 +9,7 @@ class DatabaseHelper {
   DatabaseHelper._internal();
 
   static const String dbName = 'pets_app.db';
-  static const int dbVersion = 1;
+  static const int dbVersion = 2;
 
   Future<Database> get database async {
     if (_database != null) return _database!;
@@ -28,11 +28,21 @@ class DatabaseHelper {
         await db.execute('PRAGMA foreign_keys = ON');
       },
       onCreate: _onCreate,
+      onUpgrade: _onUpgrade,
     );
   }
 
   Future<void> _onCreate(Database db, int version) async {
     await _dropAndRecreate(db);
+  }
+
+  Future<void> _onUpgrade(Database db, int oldVersion, int newVersion) async {
+    if (oldVersion < 2) {
+      // Add notificationEnabled column to events table
+      await db.execute(
+        'ALTER TABLE events ADD COLUMN notificationEnabled INTEGER DEFAULT 1',
+      );
+    }
   }
 
   Future<void> _dropAndRecreate(Database db) async {
@@ -43,7 +53,7 @@ class DatabaseHelper {
       'CREATE TABLE pets (id TEXT PRIMARY KEY, name TEXT, breed TEXT, species TEXT, gender TEXT, age INTEGER, weight REAL, imageUrl TEXT)',
     );
     await db.execute(
-      'CREATE TABLE events (id TEXT PRIMARY KEY, petId TEXT, name TEXT, description TEXT, date DATETIME, location TEXT, FOREIGN KEY (petId) REFERENCES pets(id) ON DELETE CASCADE)',
+      'CREATE TABLE events (id TEXT PRIMARY KEY, petId TEXT, name TEXT, description TEXT, date DATETIME, location TEXT, notificationEnabled INTEGER DEFAULT 1, FOREIGN KEY (petId) REFERENCES pets(id) ON DELETE CASCADE)',
     );
 
     // Insert default pets

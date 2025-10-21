@@ -185,5 +185,65 @@
   "eventDeletedSuccessfully": "Evento eliminado exitosamente",
   "@eventDeletedSuccessfully": {
     "description": "Mensaje de éxito cuando se elimina un evento"
+  },
+  "addEvent": "Agregar Evento",
+  "@addEvent": {
+    "description": "Título para el formulario de agregar evento"
+  },
+  "eventName": "Nombre del Evento",
+  "@eventName": {
+    "description": "Etiqueta para el campo de nombre del evento"
+  },
+  "eventNameHint": "ej., Chequeo Veterinario",
+  "@eventNameHint": {
+    "description": "Texto de ayuda para el campo de nombre del evento"
+  },
+  "description": "Descripción",
+  "@description": {
+    "description": "Etiqueta para el campo de descripción"
+  },
+  "eventDescriptionHint": "Ingrese los detalles del evento",
+  "@eventDescriptionHint": {
+    "description": "Texto de ayuda para el campo de descripción del evento"
+  },
+  "date": "Fecha",
+  "@date": {
+    "description": "Etiqueta para el campo de fecha"
+  },
+  "selectDate": "Seleccione una fecha",
+  "@selectDate": {
+    "description": "Texto de ayuda para selección de fecha"
+  },
+  "time": "Hora",
+  "@time": {
+    "description": "Etiqueta para el campo de hora"
+  },
+  "selectTime": "Seleccione una hora",
+  "@selectTime": {
+    "description": "Texto de ayuda para selección de hora"
+  },
+  "location": "Ubicación",
+  "@location": {
+    "description": "Etiqueta para el campo de ubicación"
+  },
+  "locationHint": "ej., Clínica Veterinaria",
+  "@locationHint": {
+    "description": "Texto de ayuda para el campo de ubicación"
+  },
+  "enableNotificationReminder": "Habilitar recordatorio de notificación",
+  "@enableNotificationReminder": {
+    "description": "Etiqueta para el interruptor de notificación"
+  },
+  "pleaseEnterEventName": "Por favor ingrese el nombre del evento",
+  "@pleaseEnterEventName": {
+    "description": "Mensaje de validación para el nombre del evento"
+  },
+  "pleaseSelectDate": "Por favor seleccione una fecha",
+  "@pleaseSelectDate": {
+    "description": "Mensaje de validación para la fecha"
+  },
+  "pleaseSelectTime": "Por favor seleccione una hora",
+  "@pleaseSelectTime": {
+    "description": "Mensaje de validación para la hora"
   }
 }

@@ -8,6 +8,7 @@ class EventModel extends Event {
     required super.description,
     required super.date,
     required super.location,
+    super.notificationEnabled,
   });
 
   factory EventModel.fromEntity(Event event) => EventModel(
@@ -17,6 +18,7 @@ class EventModel extends Event {
     description: event.description,
     date: event.date,
     location: event.location,
+    notificationEnabled: event.notificationEnabled,
   );
 
   factory EventModel.fromJson(Map<String, dynamic> json) => EventModel(
@@ -26,6 +28,7 @@ class EventModel extends Event {
     description: json['description'],
     date: DateTime.parse(json['date'] as String),
     location: json['location'],
+    notificationEnabled: json['notificationEnabled'] == 1,
   );
 
   Map<String, dynamic> toJson() => {
@@ -35,5 +38,6 @@ class EventModel extends Event {
     'description': description,
     'date': date.toIso8601String(),
     'location': location,
+    'notificationEnabled': notificationEnabled ? 1 : 0,
   };
 }

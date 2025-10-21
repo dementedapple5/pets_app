@@ -26,7 +26,10 @@ class _AddEventBottomSheetState extends State<AddEventBottomSheet> {
   late TextEditingController descriptionController;
   late TextEditingController locationController;
   late TextEditingController dateController;
+  late TextEditingController timeController;
   DateTime? selectedDate;
+  TimeOfDay? selectedTime;
+  bool notificationEnabled = true;
 
   @override
   void initState() {
@@ -35,6 +38,7 @@ class _AddEventBottomSheetState extends State<AddEventBottomSheet> {
     descriptionController = TextEditingController();
     locationController = TextEditingController();
     dateController = TextEditingController();
+    timeController = TextEditingController();
   }
 
   @override
@@ -43,6 +47,7 @@ class _AddEventBottomSheetState extends State<AddEventBottomSheet> {
     descriptionController.dispose();
     locationController.dispose();
     dateController.dispose();
+    timeController.dispose();
     super.dispose();
   }
 
@@ -57,6 +62,19 @@ class _AddEventBottomSheetState extends State<AddEventBottomSheet> {
       setState(() {
         selectedDate = picked;
         dateController.text = "${picked.toLocal()}".split(' ')[0];
+      });
+    }
+  }
+
+  Future<void> _selectTime(BuildContext context) async {
+    final TimeOfDay? picked = await showTimePicker(
+      context: context,
+      initialTime: TimeOfDay.now(),
+    );
+    if (picked != null && picked != selectedTime) {
+      setState(() {
+        selectedTime = picked;
+        timeController.text = picked.format(context);
       });
     }
   }
@@ -108,11 +126,36 @@ class _AddEventBottomSheetState extends State<AddEventBottomSheet> {
               ),
               SizedBox(height: 12),
               CustomTextField(
+                labelText: 'Time',
+                hintText: 'Select a time',
+                controller: timeController,
+                keyboardType: TextInputType.datetime,
+                textInputAction: TextInputAction.next,
+                readOnly: true,
+                onTap: () => _selectTime(context),
+                suffixIcon: Icon(Icons.access_time),
+              ),
+              SizedBox(height: 12),
+              CustomTextField(
                 labelText: 'Location',
                 hintText: 'e.g., Pet Clinic',
                 controller: locationController,
                 keyboardType: TextInputType.text,
                 textInputAction: TextInputAction.done,
+              ),
+              SizedBox(height: 12),
+              Row(
+                children: [
+                  Checkbox(
+                    value: notificationEnabled,
+                    onChanged: (value) {
+                      setState(() {
+                        notificationEnabled = value ?? true;
+                      });
+                    },
+                  ),
+                  Expanded(child: Text('Enable notification reminder')),
+                ],
               ),
               SizedBox(height: 16),
               Row(
@@ -141,14 +184,30 @@ class _AddEventBottomSheetState extends State<AddEventBottomSheet> {
                           );
                           return;
                         }
+                        if (selectedTime == null) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(content: Text('Please select a time')),
+                          );
+                          return;
+                        }
+
+                        // Combine date and time
+                        final eventDateTime = DateTime(
+                          selectedDate!.year,
+                          selectedDate!.month,
+                          selectedDate!.day,
+                          selectedTime!.hour,
+                          selectedTime!.minute,
+                        );
 
                         final newEvent = Event(
                           id: const Uuid().v4(),
                           name: nameController.text,
                           petId: widget.pet.id,
                           description: descriptionController.text,
-                          date: selectedDate!,
+                          date: eventDateTime,
                           location: locationController.text,
+                          notificationEnabled: notificationEnabled,
                         );
 
                         widget.petDetailsContext

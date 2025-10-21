@@ -10,11 +10,15 @@ import 'package:pets_app/presentation/ui/pages/add_pet_page.dart';
 import 'package:pets_app/presentation/ui/pages/home_page.dart';
 import 'package:go_router/go_router.dart';
 import 'package:pets_app/presentation/ui/pages/pet_details_page.dart';
+import 'package:pets_app/presentation/ui/utils/notification_service.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await initializeDependencies();
+
+  // Request notification permissions
+  await sl<NotificationService>().requestPermissions();
 
   runApp(const MainApp());
 }

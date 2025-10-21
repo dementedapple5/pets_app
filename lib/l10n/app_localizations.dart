@@ -367,6 +367,96 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Event deleted successfully'**
   String get eventDeletedSuccessfully;
+
+  /// Title for add event form
+  ///
+  /// In en, this message translates to:
+  /// **'Add Event'**
+  String get addEvent;
+
+  /// Label for event name field
+  ///
+  /// In en, this message translates to:
+  /// **'Event Name'**
+  String get eventName;
+
+  /// Hint text for event name field
+  ///
+  /// In en, this message translates to:
+  /// **'e.g., Veterinary Checkup'**
+  String get eventNameHint;
+
+  /// Label for description field
+  ///
+  /// In en, this message translates to:
+  /// **'Description'**
+  String get description;
+
+  /// Hint text for event description field
+  ///
+  /// In en, this message translates to:
+  /// **'Enter event details'**
+  String get eventDescriptionHint;
+
+  /// Label for date field
+  ///
+  /// In en, this message translates to:
+  /// **'Date'**
+  String get date;
+
+  /// Hint text for date selection
+  ///
+  /// In en, this message translates to:
+  /// **'Select a date'**
+  String get selectDate;
+
+  /// Label for time field
+  ///
+  /// In en, this message translates to:
+  /// **'Time'**
+  String get time;
+
+  /// Hint text for time selection
+  ///
+  /// In en, this message translates to:
+  /// **'Select a time'**
+  String get selectTime;
+
+  /// Label for location field
+  ///
+  /// In en, this message translates to:
+  /// **'Location'**
+  String get location;
+
+  /// Hint text for location field
+  ///
+  /// In en, this message translates to:
+  /// **'e.g., Pet Clinic'**
+  String get locationHint;
+
+  /// Label for notification toggle
+  ///
+  /// In en, this message translates to:
+  /// **'Enable notification reminder'**
+  String get enableNotificationReminder;
+
+  /// Validation message for event name
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter event name'**
+  String get pleaseEnterEventName;
+
+  /// Validation message for date
+  ///
+  /// In en, this message translates to:
+  /// **'Please select a date'**
+  String get pleaseSelectDate;
+
+  /// Validation message for time
+  ///
+  /// In en, this message translates to:
+  /// **'Please select a time'**
+  String get pleaseSelectTime;
 }
 
 class _AppLocalizationsDelegate
