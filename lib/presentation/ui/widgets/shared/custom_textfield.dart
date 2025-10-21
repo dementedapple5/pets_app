@@ -41,10 +41,19 @@ class CustomTextField extends StatelessWidget {
       maxLines: maxLines,
       readOnly: readOnly,
       onTap: onTap,
+      cursorColor: Theme.of(context).colorScheme.secondary,
+      style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+        color: Theme.of(context).colorScheme.onSurface,
+      ),
       decoration: InputDecoration(
         labelText: labelText,
         hintText: hintText,
         filled: true,
+        iconColor: Theme.of(context).colorScheme.secondary,
+        labelStyle: Theme.of(context).textTheme.bodyMedium,
+        hintStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(
+          color: Theme.of(context).colorScheme.onSurface,
+        ),
         fillColor:
             backgroundColor ?? Theme.of(context).inputDecorationTheme.fillColor,
         suffixIcon: suffixIcon,

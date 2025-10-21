@@ -80,7 +80,7 @@ class AppTheme {
       ),
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
-        fillColor: Colors.white12,
+        fillColor: scheme.onSurface,
         labelStyle: textTheme.bodyMedium,
         hintStyle: textTheme.bodyMedium?.copyWith(
           color: scheme.onSurface.withValues(alpha: 0.7),

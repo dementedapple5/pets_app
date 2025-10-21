@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:pets_app/domain/entities/event.dart';
 import 'package:pets_app/l10n/app_localizations.dart';
 import 'package:intl/intl.dart';
 import 'package:pets_app/core/di/dependency_injection.dart';
@@ -67,6 +68,49 @@ class PetDetailsPage extends StatelessWidget {
       isScrollControlled: true,
       showDragHandle: true,
       builder: (_) => AddEventBottomSheet(pet: pet, petDetailsContext: context),
+    );
+  }
+
+  void showEditEventBottomSheet(BuildContext context, Event event) {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      showDragHandle: true,
+      builder: (_) => AddEventBottomSheet(
+        pet: pet,
+        petDetailsContext: context,
+        event: event,
+      ),
+    );
+  }
+
+  void showDeleteEventDialog(BuildContext context, Event event) {
+    showDialog(
+      context: context,
+      builder: (BuildContext dialogContext) {
+        return AlertDialog(
+          title: Text(AppLocalizations.of(dialogContext)!.deleteEvent),
+          content: Text(
+            AppLocalizations.of(
+              dialogContext,
+            )!.areYouSureDeleteEvent(event.name),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(dialogContext).pop();
+              },
+              child: Text(AppLocalizations.of(dialogContext)!.cancel),
+            ),
+            TextButton(
+              onPressed: () {
+                context.read<PetDetailsCubit>().deleteEvent(event.id);
+              },
+              child: Text(AppLocalizations.of(dialogContext)!.delete),
+            ),
+          ],
+        );
+      },
     );
   }
 
@@ -218,56 +262,7 @@ class PetDetailsPage extends StatelessWidget {
                                     scrollDirection: Axis.horizontal,
                                     itemBuilder: (context, index) {
                                       final event = state.events![index];
-                                      return Container(
-                                        padding: EdgeInsets.all(16),
-                                        decoration: BoxDecoration(
-                                          color: Colors.white,
-                                          borderRadius: BorderRadius.circular(
-                                            16,
-                                          ),
-                                          boxShadow: [
-                                            BoxShadow(
-                                              color: Colors.black.withValues(
-                                                alpha: 0.1,
-                                              ),
-                                              spreadRadius: 2,
-                                              blurRadius: 10,
-                                              offset: Offset(0, 3),
-                                            ),
-                                          ],
-                                        ),
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Row(
-                                              children: [
-                                                Icon(
-                                                  Icons.calendar_month,
-                                                  color: Colors.grey[600],
-                                                ),
-                                                SizedBox(width: 8),
-                                                Text(
-                                                  formatDateTime(event.date),
-                                                  style: TextStyle(
-                                                    fontSize: 12,
-                                                    color: Colors.grey[600],
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                            Text(
-                                              event.name,
-                                              style: TextStyle(
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 16,
-                                              ),
-                                            ),
-                                            Text(event.description),
-                                            Text(event.location),
-                                          ],
-                                        ),
-                                      );
+                                      return _buildEventItem(context, event);
                                     },
                                   ),
                                 ),
@@ -279,6 +274,106 @@ class PetDetailsPage extends StatelessWidget {
                   ),
           );
         },
+      ),
+    );
+  }
+
+  Widget _buildEventItem(BuildContext context, Event event) {
+    final theme = Theme.of(context);
+    return Container(
+      padding: EdgeInsets.all(16),
+      margin: EdgeInsets.only(right: 16),
+      decoration: BoxDecoration(
+        color: theme.colorScheme.surfaceBright,
+        borderRadius: BorderRadius.circular(16),
+        boxShadow: [
+          BoxShadow(
+            color: theme.colorScheme.onSurface.withValues(alpha: 0.1),
+            spreadRadius: 2,
+            blurRadius: 10,
+            offset: Offset(0, 3),
+          ),
+        ],
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Icon(Icons.calendar_month, color: theme.colorScheme.secondary),
+              SizedBox(width: 8),
+              Expanded(
+                child: Text(
+                  formatDateTime(event.date),
+                  style: TextStyle(
+                    fontSize: 12,
+                    color: theme.colorScheme.secondary,
+                  ),
+                ),
+              ),
+              PopupMenuButton<String>(
+                onSelected: (value) {
+                  if (value == 'edit') {
+                    showEditEventBottomSheet(context, event);
+                  } else if (value == 'delete') {
+                    showDeleteEventDialog(context, event);
+                  }
+                },
+                itemBuilder: (BuildContext context) => [
+                  PopupMenuItem<String>(
+                    value: 'edit',
+                    child: Row(
+                      children: [
+                        Icon(Icons.edit, size: 16),
+                        SizedBox(width: 8),
+                        Text(AppLocalizations.of(context)!.edit),
+                      ],
+                    ),
+                  ),
+                  PopupMenuItem<String>(
+                    value: 'delete',
+                    child: Row(
+                      children: [
+                        Icon(Icons.delete, size: 16),
+                        SizedBox(width: 8),
+                        Text(AppLocalizations.of(context)!.delete),
+                      ],
+                    ),
+                  ),
+                ],
+                child: Icon(
+                  Icons.more_vert,
+                  color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
+                ),
+              ),
+            ],
+          ),
+          Text(
+            event.name,
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+          ),
+          if (event.description.isNotEmpty) ...[
+            SizedBox(height: 4),
+            Text(
+              event.description,
+              style: TextStyle(fontSize: 14),
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+            ),
+          ],
+          if (event.location.isNotEmpty) ...[
+            SizedBox(height: 4),
+            Text(
+              event.location,
+              style: TextStyle(
+                fontSize: 12,
+                color: theme.colorScheme.onSurface.withValues(alpha: 0.7),
+              ),
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+            ),
+          ],
+        ],
       ),
     );
   }

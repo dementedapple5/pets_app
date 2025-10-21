@@ -190,4 +190,21 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get pleaseSelectTime => 'Please select a time';
+
+  @override
+  String get editEvent => 'Edit Event';
+
+  @override
+  String get updateEvent => 'Update Event';
+
+  @override
+  String get edit => 'Edit';
+
+  @override
+  String get deleteEvent => 'Delete Event';
+
+  @override
+  String areYouSureDeleteEvent(String eventName) {
+    return 'Are you sure you want to delete $eventName?';
+  }
 }

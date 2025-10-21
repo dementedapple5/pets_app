@@ -12,10 +12,12 @@ import 'package:pets_app/l10n/app_localizations.dart';
 class AddEventBottomSheet extends StatefulWidget {
   final Pet pet;
   final BuildContext petDetailsContext;
+  final Event? event; // null for add mode, Event for edit mode
   const AddEventBottomSheet({
     super.key,
     required this.pet,
     required this.petDetailsContext,
+    this.event,
   });
 
   @override
@@ -40,6 +42,28 @@ class _AddEventBottomSheetState extends State<AddEventBottomSheet> {
     locationController = TextEditingController();
     dateController = TextEditingController();
     timeController = TextEditingController();
+
+    // Pre-populate fields if editing an existing event
+    if (widget.event != null) {
+      nameController.text = widget.event!.name;
+      descriptionController.text = widget.event!.description;
+      locationController.text = widget.event!.location;
+      selectedDate = widget.event!.date;
+      selectedTime = TimeOfDay.fromDateTime(widget.event!.date);
+      notificationEnabled = widget.event!.notificationEnabled;
+
+      dateController.text = "${widget.event!.date.toLocal()}".split(' ')[0];
+    }
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+
+    // Set time text after context is available
+    if (widget.event != null && selectedTime != null) {
+      timeController.text = selectedTime!.format(context);
+    }
   }
 
   @override
@@ -95,7 +119,9 @@ class _AddEventBottomSheetState extends State<AddEventBottomSheet> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                AppLocalizations.of(context)!.addEvent,
+                widget.event == null
+                    ? AppLocalizations.of(context)!.addEvent
+                    : AppLocalizations.of(context)!.editEvent,
                 style: theme.textTheme.titleLarge?.copyWith(
                   fontWeight: FontWeight.bold,
                 ),
@@ -183,7 +209,9 @@ class _AddEventBottomSheetState extends State<AddEventBottomSheet> {
                     child: PrimaryButton(
                       backgroundColor: theme.colorScheme.onSurface,
                       textColor: theme.colorScheme.surface,
-                      title: AppLocalizations.of(context)!.addEvent,
+                      title: widget.event == null
+                          ? AppLocalizations.of(context)!.addEvent
+                          : AppLocalizations.of(context)!.updateEvent,
                       onPressed: () {
                         if (nameController.text.isEmpty) {
                           ScaffoldMessenger.of(context).showSnackBar(
@@ -227,20 +255,35 @@ class _AddEventBottomSheetState extends State<AddEventBottomSheet> {
                           selectedTime!.minute,
                         );
 
-                        final newEvent = Event(
-                          id: const Uuid().v4(),
-                          name: nameController.text,
-                          petId: widget.pet.id,
-                          description: descriptionController.text,
-                          date: eventDateTime,
-                          location: locationController.text,
-                          notificationEnabled: notificationEnabled,
-                        );
+                        if (widget.event == null) {
+                          // Add new event
+                          final newEvent = Event(
+                            id: const Uuid().v4(),
+                            name: nameController.text,
+                            petId: widget.pet.id,
+                            description: descriptionController.text,
+                            date: eventDateTime,
+                            location: locationController.text,
+                            notificationEnabled: notificationEnabled,
+                          );
 
-                        widget.petDetailsContext
-                            .read<PetDetailsCubit>()
-                            .addEvent(newEvent);
-                        context.pop();
+                          widget.petDetailsContext
+                              .read<PetDetailsCubit>()
+                              .addEvent(newEvent);
+                        } else {
+                          // Update existing event
+                          final updatedEvent = widget.event!.copyWith(
+                            name: nameController.text,
+                            description: descriptionController.text,
+                            date: eventDateTime,
+                            location: locationController.text,
+                            notificationEnabled: notificationEnabled,
+                          );
+
+                          widget.petDetailsContext
+                              .read<PetDetailsCubit>()
+                              .updateEvent(updatedEvent);
+                        }
                       },
                     ),
                   ),

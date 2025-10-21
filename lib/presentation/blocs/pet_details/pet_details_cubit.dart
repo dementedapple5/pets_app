@@ -70,7 +70,14 @@ class PetDetailsCubit extends Cubit<PetDetailsState> {
       await _notificationService.scheduleEventNotification(event);
     }
 
-    emit(state.copyWith(isLoading: false, isEventUpdated: true));
+    emit(
+      state.copyWith(
+        isLoading: false,
+        isEventUpdated: true,
+        events: state.events?.map((e) => e.id == event.id ? event : e).toList(),
+      ),
+    );
+    emit(state.copyWith(isEventUpdated: false));
   }
 
   Future<void> deleteEvent(String id) async {
@@ -80,6 +87,13 @@ class PetDetailsCubit extends Cubit<PetDetailsState> {
     // Cancel notification for deleted event
     await _notificationService.cancelEventNotification(id);
 
-    emit(state.copyWith(isLoading: false, isEventDeleted: true));
+    emit(
+      state.copyWith(
+        isLoading: false,
+        isEventDeleted: true,
+        events: state.events?.where((e) => e.id != id).toList(),
+      ),
+    );
+    emit(state.copyWith(isEventDeleted: false));
   }
 }

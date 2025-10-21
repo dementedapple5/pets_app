@@ -191,4 +191,21 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get pleaseSelectTime => 'Por favor seleccione una hora';
+
+  @override
+  String get editEvent => 'Editar Evento';
+
+  @override
+  String get updateEvent => 'Actualizar Evento';
+
+  @override
+  String get edit => 'Editar';
+
+  @override
+  String get deleteEvent => 'Eliminar Evento';
+
+  @override
+  String areYouSureDeleteEvent(String eventName) {
+    return '¿Está seguro de que desea eliminar $eventName?';
+  }
 }

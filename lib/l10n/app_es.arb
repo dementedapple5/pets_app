@@ -245,5 +245,31 @@
   "pleaseSelectTime": "Por favor seleccione una hora",
   "@pleaseSelectTime": {
     "description": "Mensaje de validación para la hora"
+  },
+  "editEvent": "Editar Evento",
+  "@editEvent": {
+    "description": "Título para el formulario de editar evento"
+  },
+  "updateEvent": "Actualizar Evento",
+  "@updateEvent": {
+    "description": "Texto del botón para actualizar un evento"
+  },
+  "edit": "Editar",
+  "@edit": {
+    "description": "Texto del botón editar"
+  },
+  "deleteEvent": "Eliminar Evento",
+  "@deleteEvent": {
+    "description": "Título para el diálogo de eliminar evento"
+  },
+  "areYouSureDeleteEvent": "¿Está seguro de que desea eliminar {eventName}?",
+  "@areYouSureDeleteEvent": {
+    "description": "Mensaje de confirmación para eliminar un evento",
+    "placeholders": {
+      "eventName": {
+        "type": "String",
+        "description": "El nombre del evento a eliminar"
+      }
+    }
   }
 }

@@ -457,6 +457,36 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Please select a time'**
   String get pleaseSelectTime;
+
+  /// Title for edit event form
+  ///
+  /// In en, this message translates to:
+  /// **'Edit Event'**
+  String get editEvent;
+
+  /// Button text to update an event
+  ///
+  /// In en, this message translates to:
+  /// **'Update Event'**
+  String get updateEvent;
+
+  /// Edit button text
+  ///
+  /// In en, this message translates to:
+  /// **'Edit'**
+  String get edit;
+
+  /// Title for delete event dialog
+  ///
+  /// In en, this message translates to:
+  /// **'Delete Event'**
+  String get deleteEvent;
+
+  /// Confirmation message for deleting an event
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to delete {eventName}?'**
+  String areYouSureDeleteEvent(String eventName);
 }
 
 class _AppLocalizationsDelegate

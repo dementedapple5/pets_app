@@ -245,5 +245,31 @@
   "pleaseSelectTime": "Please select a time",
   "@pleaseSelectTime": {
     "description": "Validation message for time"
+  },
+  "editEvent": "Edit Event",
+  "@editEvent": {
+    "description": "Title for edit event form"
+  },
+  "updateEvent": "Update Event",
+  "@updateEvent": {
+    "description": "Button text to update an event"
+  },
+  "edit": "Edit",
+  "@edit": {
+    "description": "Edit button text"
+  },
+  "deleteEvent": "Delete Event",
+  "@deleteEvent": {
+    "description": "Title for delete event dialog"
+  },
+  "areYouSureDeleteEvent": "Are you sure you want to delete {eventName}?",
+  "@areYouSureDeleteEvent": {
+    "description": "Confirmation message for deleting an event",
+    "placeholders": {
+      "eventName": {
+        "type": "String",
+        "description": "The name of the event to delete"
+      }
+    }
   }
 }
