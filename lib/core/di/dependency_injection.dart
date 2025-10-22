@@ -1,13 +1,17 @@
 import 'package:get_it/get_it.dart';
+import 'package:pets_app/data/local/db/auth_local_data_source.dart';
 import 'package:pets_app/data/local/db/database_helper.dart';
 import 'package:pets_app/data/local/db/event_local_data_source.dart';
 import 'package:pets_app/data/local/db/pet_local_data_source.dart';
+import 'package:pets_app/data/local/repositories/auth_repository_impl.dart';
 import 'package:pets_app/data/local/repositories/event_repository_impl.dart';
 import 'package:pets_app/data/local/repositories/pet_repository_impl.dart';
+import 'package:pets_app/domain/repositories/auth_repository.dart';
 import 'package:pets_app/domain/repositories/event_repository.dart';
 import 'package:pets_app/domain/repositories/pet_repository.dart';
 import 'package:pets_app/presentation/blocs/add_pet/add_pet_cubit.dart';
 import 'package:pets_app/presentation/blocs/home/home_cubit.dart';
+import 'package:pets_app/presentation/blocs/login/login_cubit.dart';
 import 'package:pets_app/presentation/ui/utils/notification_service.dart';
 
 final sl = GetIt.instance;
@@ -28,35 +32,31 @@ Future<void> initializeDependencies() async {
   // Data Sources
   // ========================================
 
+  sl.registerLazySingleton<AuthLocalDataSource>(() => AuthLocalDataSourceImpl());
+
   sl.registerLazySingleton<PetLocalDataSource>(() => PetLocalDataSourceImpl());
 
-  sl.registerLazySingleton<EventLocalDataSource>(
-    () => EventLocalDataSourceImpl(),
-  );
+  sl.registerLazySingleton<EventLocalDataSource>(() => EventLocalDataSourceImpl());
 
   // ========================================
   // Repositories
   // ========================================
 
-  sl.registerLazySingleton<PetRepository>(
-    () => PetRepositoryImpl(petDataSource: sl<PetLocalDataSource>()),
-  );
+  sl.registerLazySingleton<AuthRepository>(() => AuthRepositoryImpl(authDataSource: sl<AuthLocalDataSource>()));
 
-  sl.registerLazySingleton<EventRepository>(
-    () => EventRepositoryImpl(eventLocalDataSource: sl<EventLocalDataSource>()),
-  );
+  sl.registerLazySingleton<PetRepository>(() => PetRepositoryImpl(petDataSource: sl<PetLocalDataSource>()));
+
+  sl.registerLazySingleton<EventRepository>(() => EventRepositoryImpl(eventLocalDataSource: sl<EventLocalDataSource>()));
 
   // ========================================
   // BLoCs / Cubits
   // ========================================
 
-  sl.registerFactory<HomeCubit>(
-    () => HomeCubit(petRepository: sl<PetRepository>()),
-  );
+  sl.registerFactory<LoginCubit>(() => LoginCubit(authRepository: sl<AuthRepository>()));
 
-  sl.registerFactory<AddPetCubit>(
-    () => AddPetCubit(petRepository: sl<PetRepository>()),
-  );
+  sl.registerFactory<HomeCubit>(() => HomeCubit(petRepository: sl<PetRepository>()));
+
+  sl.registerFactory<AddPetCubit>(() => AddPetCubit(petRepository: sl<PetRepository>()));
 }
 
 Future<void> resetDependencies() async {

@@ -45,3 +45,15 @@ flutter run
 flutter test
 ```
 
+
+### e) Inicio de sesión (Login)
+- **Pantalla de login**: email y contraseña con validaciones, alternar visibilidad de contraseña e i18n (ES/EN).
+- **Llamada a API simulada**: se emula un delay y siempre devuelve éxito (sin backend real).
+- **Arquitectura**:
+  - `domain`: `User` y contrato `AuthRepository`.
+  - `data`: `AuthLocalDataSource` y `AuthRepositoryImpl`.
+  - `presentation`: `LoginCubit`, `LoginState` y `LoginPage` (BLoC/Cubit).
+- **Navegación**: la ruta inicial es `/login`; al autenticar navega a `/` (Home).
+- **DI**: registros en `core/di/dependency_injection.dart`.
+- **Cómo probar**: ejecuta la app, ingresa cualquier email/contraseña y pulsa "Login".
+

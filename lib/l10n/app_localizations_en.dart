@@ -207,4 +207,28 @@ class AppLocalizationsEn extends AppLocalizations {
   String areYouSureDeleteEvent(String eventName) {
     return 'Are you sure you want to delete $eventName?';
   }
+
+  @override
+  String get login => 'Login';
+
+  @override
+  String get email => 'Email';
+
+  @override
+  String get enterEmail => 'Enter your email';
+
+  @override
+  String get emailRequired => 'Email is required';
+
+  @override
+  String get invalidEmail => 'Please enter a valid email';
+
+  @override
+  String get password => 'Password';
+
+  @override
+  String get enterPassword => 'Enter your password';
+
+  @override
+  String get passwordRequired => 'Password is required';
 }

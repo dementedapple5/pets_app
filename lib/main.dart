@@ -6,9 +6,11 @@ import 'package:pets_app/core/di/dependency_injection.dart';
 import 'package:pets_app/domain/entities/pet.dart';
 import 'package:pets_app/presentation/blocs/add_pet/add_pet_cubit.dart';
 import 'package:pets_app/presentation/blocs/home/home_cubit.dart';
+import 'package:pets_app/presentation/blocs/login/login_cubit.dart';
 import 'package:pets_app/presentation/ui/pages/add_pet_page.dart';
 import 'package:pets_app/presentation/ui/pages/home_page.dart';
 import 'package:go_router/go_router.dart';
+import 'package:pets_app/presentation/ui/pages/login_page.dart';
 import 'package:pets_app/presentation/ui/pages/pet_details_page.dart';
 import 'package:pets_app/presentation/ui/theme/app_theme.dart';
 import 'package:pets_app/presentation/ui/utils/notification_service.dart';
@@ -47,20 +49,19 @@ class MainApp extends StatelessWidget {
 }
 
 final _router = GoRouter(
+  initialLocation: '/login',
   routes: [
     GoRoute(
+      path: '/login',
+      builder: (context, state) => BlocProvider(create: (context) => sl<LoginCubit>(), child: const LoginPage()),
+    ),
+    GoRoute(
       path: '/',
-      builder: (context, state) => BlocProvider(
-        create: (context) => sl<HomeCubit>()..getPets(),
-        child: const HomePage(),
-      ),
+      builder: (context, state) => BlocProvider(create: (context) => sl<HomeCubit>()..getPets(), child: const HomePage()),
     ),
     GoRoute(
       path: '/add-pet',
-      builder: (context, state) => BlocProvider(
-        create: (context) => sl<AddPetCubit>(),
-        child: const AddPetPage(),
-      ),
+      builder: (context, state) => BlocProvider(create: (context) => sl<AddPetCubit>(), child: const AddPetPage()),
     ),
     GoRoute(
       path: '/pet-details',

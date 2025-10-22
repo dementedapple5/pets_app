@@ -271,5 +271,37 @@
         "description": "The name of the event to delete"
       }
     }
+  },
+  "login": "Login",
+  "@login": {
+    "description": "Title for login page"
+  },
+  "email": "Email",
+  "@email": {
+    "description": "Label for email field"
+  },
+  "enterEmail": "Enter your email",
+  "@enterEmail": {
+    "description": "Hint text for email field"
+  },
+  "emailRequired": "Email is required",
+  "@emailRequired": {
+    "description": "Validation message for email field"
+  },
+  "invalidEmail": "Please enter a valid email",
+  "@invalidEmail": {
+    "description": "Validation message for invalid email"
+  },
+  "password": "Password",
+  "@password": {
+    "description": "Label for password field"
+  },
+  "enterPassword": "Enter your password",
+  "@enterPassword": {
+    "description": "Hint text for password field"
+  },
+  "passwordRequired": "Password is required",
+  "@passwordRequired": {
+    "description": "Validation message for password field"
   }
 }
